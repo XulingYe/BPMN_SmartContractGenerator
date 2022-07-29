@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid Studio (https://www.liquid-technologies.com) -->
+<xs:schema xmlns:tns="http://camunda.org/schema/1.0/bpmn" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://camunda.org/schema/1.0/bpmn" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="address">
+    <xs:complexType>
+      <xs:attribute name="value" type="xs:string" use="optional" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="actions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="action">
+          <xs:complexType>
+            <xs:attribute name="id" type="xs:string" use="optional" />
+            <xs:attribute name="variName" type="xs:string" use="optional" />
+            <xs:attribute name="variValue" type="xs:string" use="optional" />
+            <xs:attribute name="address" type="xs:string" use="optional" />
+            <xs:attribute name="amount" type="xs:string" use="optional" />
+            <xs:attribute name="message" type="xs:string" use="optional" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
