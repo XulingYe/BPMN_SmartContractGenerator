@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!-- Created with Liquid Studio (https://www.liquid-technologies.com) -->
-<xs:schema xmlns:tns="http://camunda.org/schema/1.0/bpmn" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://camunda.org/schema/1.0/bpmn" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:tns="https://raw.githubusercontent.com/XulingYe/BPMN_SmartContractGenerator/main/scg_actions" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="https://raw.githubusercontent.com/XulingYe/BPMN_SmartContractGenerator/main/scg_actions" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="address">
     <xs:complexType>
       <xs:attribute name="value" type="xs:string" use="optional" />
