@@ -36,14 +36,14 @@
             <xsd:any minOccurs="0" maxOccurs="unbounded" namespace="##other" processContents="lax" />
             <xsd:element ref="actions"
                          minOccurs="0"
-                         maxOccurs="unbounded" />
+                         maxOccurs="1" />
         </xsd:sequence>
     </xsd:complexType>
 
     <xsd:element name="actions" type="tActions"/>
     <xsd:complexType name="tActions">
         <xsd:sequence>
-            <xsd:element minOccurs="0"
+            <xsd:element minOccurs="1"
                         maxOccurs="unbounded"
                         name="action">
                 <xsd:complexType>
