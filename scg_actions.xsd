@@ -1,17 +1,19 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema elementFormDefault="qualified" attributeFormDefault="unqualified"
+<xsd:schema 
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns="https://raw.githubusercontent.com/XulingYe/BPMN_SmartContractGenerator/main/scg_actions" 
-	targetNamespace="https://raw.githubusercontent.com/XulingYe/BPMN_SmartContractGenerator/main/scg_actions">
-
-    <xsd:complexType name="tBaseElement"
+    xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+    xmlns:scg="https://raw.githubusercontent.com/XulingYe/BPMN_SmartContractGenerator/main/scg_actions" 
+	targetNamespace="https://raw.githubusercontent.com/XulingYe/BPMN_SmartContractGenerator/main/scg_actions"
+    elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xsd:import namespace="http://www.omg.org/spec/BPMN/20100501/MODEL" schemaLocation="Semantic.xsd"/>
+    <xsd:complexType name="tBaseElement" 
                      abstract="true"
                      xmlns:xsd="http://www.w3.org/2001/XMLSchema">
         <xsd:sequence>
-            <xsd:element ref="documentation"
+            <xsd:element ref="bpmn:documentation"
                          minOccurs="0"
                          maxOccurs="unbounded" />
-            <xsd:element ref="extensionElements"
+            <xsd:element ref="scg:extensionElements"
                          minOccurs="0"
                          maxOccurs="1" />
         </xsd:sequence>
@@ -22,25 +24,17 @@
                           processContents="lax" />
     </xsd:complexType>
 
-    <xsd:element name="documentation" type="tDocumentation"/>
-    <xsd:complexType name="tDocumentation" mixed="true">
-        <xsd:sequence>
-            <xsd:any namespace="##any" processContents="lax" minOccurs="0"/>
-        </xsd:sequence>
-        <xsd:attribute name="id" type="xsd:ID" use="optional"/>
-        <xsd:attribute name="textFormat" type="xsd:string" default="text/plain"/>
-    </xsd:complexType>
-    <xsd:element name="extensionElements" type="tExtensionElements" />
+    <xsd:element name="extensionElements" type="scg:tExtensionElements" />
     <xsd:complexType name="tExtensionElements">
         <xsd:sequence>
             <xsd:any minOccurs="0" maxOccurs="unbounded" namespace="##other" processContents="lax" />
-            <xsd:element ref="actions"
+            <xsd:element ref="scg:actions"
                          minOccurs="0"
                          maxOccurs="1" />
         </xsd:sequence>
     </xsd:complexType>
 
-    <xsd:element name="actions" type="tActions"/>
+    <xsd:element name="actions" type="scg:tActions"/>
     <xsd:complexType name="tActions">
         <xsd:sequence>
             <xsd:element minOccurs="1"
