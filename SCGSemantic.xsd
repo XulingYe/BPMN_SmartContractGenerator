@@ -1,6 +1,48 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="https://raw.githubusercontent.com/XulingYe/BPMN_SmartContractGenerator/main" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="https://raw.githubusercontent.com/XulingYe/BPMN_SmartContractGenerator/main" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="variable">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://raw.githubusercontent.com/XulingYe/BPMN_SmartContractGenerator/scg" 
+           attributeFormDefault="unqualified" elementFormDefault="qualified" 
+           targetNamespace="https://raw.githubusercontent.com/XulingYe/BPMN_SmartContractGenerator/scg" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="extensionElements">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:any minOccurs="0" maxOccurs="unbounded" namespace="##other" processContents="lax" />
+                <xs:element name="actions" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element minOccurs="1" maxOccurs="unbounded" name="action">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element ref="variableInput" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="variableOutput" minOccurs="0" maxOccurs="unbounded"/>
+                                    </xs:sequence>
+                                    <xs:attribute name="id" type="xs:string" use="required" />
+                                    <xs:anyAttribute namespace="##other" processContents="lax" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="variableInput" type="tVariable"/>
+    <xs:element name="variableOutput" type="tVariable"/>
+    <xs:complexType name="tVariable">
+        <xs:attribute name="name" type="xs:string" use="required" />
+        <xs:attribute name="type" type="xs:string" use="optional" />
+        <xs:attribute name="value" type="xs:string" use="optional" />
+        <xs:attribute name="equalVari" type="xs:string" use="optional" />
+        <xs:anyAttribute namespace="##other"
+                      processContents="lax" />
+    </xs:complexType>
+    
+    
+    
+    <!--<xs:element name="variable">
     <xs:complexType>
       <xs:attribute name="name" type="xs:string" use="required" />
       <xs:attribute name="type" type="xs:string" use="required" />
@@ -32,5 +74,5 @@
         </xs:element>
       </xs:sequence>
     </xs:complexType>
-  </xs:element>
+  </xs:element>-->
 </xs:schema>

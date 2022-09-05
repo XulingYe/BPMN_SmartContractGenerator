@@ -1,88 +1,28 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema 
-	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+<xsd:schema 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
     xmlns:scg="https://raw.githubusercontent.com/XulingYe/BPMN_SmartContractGenerator/scg" 
-	targetNamespace="https://raw.githubusercontent.com/XulingYe/BPMN_SmartContractGenerator/main/scg_actions"
+    xmlns="https://raw.githubusercontent.com/XulingYe/BPMN_SmartContractGenerator/scg" 
+	targetNamespace="https://raw.githubusercontent.com/XulingYe/BPMN_SmartContractGenerator/scg/scg_actions"
     elementFormDefault="qualified" attributeFormDefault="unqualified">
-    <xs:import namespace="http://www.omg.org/spec/BPMN/20100501/MODEL" schemaLocation="Semantic.xsd"/>
-    <xs:complexType name="tBaseElement" 
+    <xsd:import schemaLocation="BPMNSemantic.xsd" namespace="http://www.omg.org/spec/BPMN/20100501/MODEL" />
+    <xsd:import schemaLocation="SCGSemantic.xsd" namespace="https://raw.githubusercontent.com/XulingYe/BPMN_SmartContractGenerator/scg" />
+    <xsd:complexType name="tBaseElement" 
                      abstract="true">
-        <xs:sequence>
-            <xs:element ref="bpmn:documentation"
+        <xsd:sequence>
+            <xsd:element ref="bpmn:documentation"
                          minOccurs="0"
-                         maxOccurs="unbounded" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"/>
-            <xs:element ref="extensionElements"
+                         maxOccurs="unbounded" />
+            <xsd:element ref="extensionElements"
                          minOccurs="0"
                          maxOccurs="1" />
-        </xs:sequence>
-        <xs:attribute name="id"
-                       type="xs:ID"
+        </xsd:sequence>
+        <xsd:attribute name="id"
+                       type="xsd:ID"
                        use="optional" />
-        <xs:anyAttribute namespace="##other"
+        <xsd:anyAttribute namespace="##other"
                           processContents="lax" />
-    </xs:complexType>
+    </xsd:complexType>
 
-    <xs:element name="extensionElements" type="tExtensionElements" />
-    <xs:complexType name="tExtensionElements">
-        <xs:sequence>
-            <xs:any minOccurs="0" maxOccurs="unbounded" namespace="##other" processContents="lax" />
-            <xs:element ref="actions"
-                         minOccurs="0"
-                         maxOccurs="1" />
-        </xs:sequence>
-    </xs:complexType>
-
-    <xs:element name="actions" type="tActions"/>
-    <xs:complexType name="tActions">
-        <xs:sequence>
-            <xs:element minOccurs="1"
-                        maxOccurs="unbounded"
-                        ref="action">
-            </xs:element>
-        </xs:sequence>
-    </xs:complexType>
-	<xs:element name="action" type="tAction"/>
-	<xs:complexType name="tAction">
-		<xs:sequence>
-            <xs:element ref="variableInput"
-                         minOccurs="0"
-                         maxOccurs="unbounded"/>
-            <xs:element ref="variableOutput"
-                         minOccurs="0"
-                         maxOccurs="unbounded"/>
-        </xs:sequence>
-		<xs:attribute name="id"
-					  type="xs:string"
-					  use="optional" />
-		<xs:anyAttribute namespace="##other"
-                      processContents="lax" />
-	</xs:complexType>
-	<xs:element name="variableInput" type="tVariable"/>
-	<xs:element name="variableOutput" type="tVariable"/>
-	<xs:complexType name="tVariable">
-		<xs:sequence>
-            <xs:element ref="variableInput"
-                         minOccurs="0"
-                         maxOccurs="unbounded"/>
-            <xs:element ref="variableOutput"
-                         minOccurs="0"
-                         maxOccurs="unbounded"/>
-        </xs:sequence>
-		<xs:attribute name="name"
-					  type="xs:string"
-					  use="optional" />
-		<xs:attribute name="type"
-					  type="xs:string"
-					  use="optional" />
-		<xs:attribute name="value"
-					  type="xs:string"
-					  use="optional" />
-		<xs:attribute name="equalVari"
-					  type="xs:string"
-					  use="optional" />
-		<xs:anyAttribute namespace="##other"
-                      processContents="lax" />
-	</xs:complexType>
-	
-</xs:schema>
+</xsd:schema>
