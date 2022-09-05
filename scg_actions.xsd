@@ -1,18 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema 
-	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+<xs:schema 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
-    xmlns:scg="https://raw.githubusercontent.com/XulingYe/BPMN_SmartContractGenerator/main/scg_actions" 
+    xmlns:scg="https://raw.githubusercontent.com/XulingYe/BPMN_SmartContractGenerator/scg" 
 	targetNamespace="https://raw.githubusercontent.com/XulingYe/BPMN_SmartContractGenerator/main/scg_actions"
     elementFormDefault="qualified" attributeFormDefault="unqualified">
-    <xsd:import namespace="http://www.omg.org/spec/BPMN/20100501/MODEL" schemaLocation="Semantic.xsd"/>
-    <xsd:complexType name="tBaseElement" 
-                     abstract="true"
-                     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xs:import namespace="http://www.omg.org/spec/BPMN/20100501/MODEL" schemaLocation="Semantic.xsd"/>
+    <xs:complexType name="tBaseElement" 
+                     abstract="true">
         <xsd:sequence>
             <xsd:element ref="bpmn:documentation"
                          minOccurs="0"
-                         maxOccurs="unbounded" />
+                         maxOccurs="unbounded" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"/>
             <xsd:element ref="scg:extensionElements"
                          minOccurs="0"
                          maxOccurs="1" />
@@ -39,15 +38,16 @@
         <xsd:sequence>
             <xsd:element minOccurs="1"
                         maxOccurs="unbounded"
-                        name="action">
-                <xsd:complexType>
-                    <xsd:attribute name="id"
+                        name="action"
+			 type="tAction">
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+	<xs:complexType name="tAction">
+		<xsd:attribute name="id"
                                   type="xsd:string"
                                   use="optional" />
                     <xsd:anyAttribute namespace="##other"
                       processContents="lax" />
-                </xsd:complexType>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
+	</xs:complexType>
 </xsd:schema>
