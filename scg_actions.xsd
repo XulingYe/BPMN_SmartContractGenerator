@@ -8,46 +8,81 @@
     <xs:import namespace="http://www.omg.org/spec/BPMN/20100501/MODEL" schemaLocation="Semantic.xsd"/>
     <xs:complexType name="tBaseElement" 
                      abstract="true">
-        <xsd:sequence>
-            <xsd:element ref="bpmn:documentation"
+        <xs:sequence>
+            <xs:element ref="bpmn:documentation"
                          minOccurs="0"
                          maxOccurs="unbounded" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"/>
-            <xsd:element ref="scg:extensionElements"
+            <xs:element ref="extensionElements"
                          minOccurs="0"
                          maxOccurs="1" />
-        </xsd:sequence>
-        <xsd:attribute name="id"
-                       type="xsd:ID"
+        </xs:sequence>
+        <xs:attribute name="id"
+                       type="xs:ID"
                        use="optional" />
-        <xsd:anyAttribute namespace="##other"
+        <xs:anyAttribute namespace="##other"
                           processContents="lax" />
-    </xsd:complexType>
+    </xs:complexType>
 
-    <xsd:element name="extensionElements" type="scg:tExtensionElements" />
-    <xsd:complexType name="tExtensionElements">
-        <xsd:sequence>
-            <xsd:any minOccurs="0" maxOccurs="unbounded" namespace="##other" processContents="lax" />
-            <xsd:element ref="scg:actions"
+    <xs:element name="extensionElements" type="tExtensionElements" />
+    <xs:complexType name="tExtensionElements">
+        <xs:sequence>
+            <xs:any minOccurs="0" maxOccurs="unbounded" namespace="##other" processContents="lax" />
+            <xs:element ref="actions"
                          minOccurs="0"
                          maxOccurs="1" />
-        </xsd:sequence>
-    </xsd:complexType>
+        </xs:sequence>
+    </xs:complexType>
 
-    <xsd:element name="actions" type="scg:tActions"/>
-    <xsd:complexType name="tActions">
-        <xsd:sequence>
-            <xsd:element minOccurs="1"
+    <xs:element name="actions" type="tActions"/>
+    <xs:complexType name="tActions">
+        <xs:sequence>
+            <xs:element minOccurs="1"
                         maxOccurs="unbounded"
-                        name="action"
-			 type="tAction">
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
+                        ref="action">
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+	<xs:element name="action" type="tAction"/>
 	<xs:complexType name="tAction">
-		<xsd:attribute name="id"
-                                  type="xsd:string"
-                                  use="optional" />
-                    <xsd:anyAttribute namespace="##other"
+		<xs:sequence>
+            <xs:element ref="variableInput"
+                         minOccurs="0"
+                         maxOccurs="unbounded"/>
+            <xs:element ref="variableOutput"
+                         minOccurs="0"
+                         maxOccurs="unbounded"/>
+        </xs:sequence>
+		<xs:attribute name="id"
+					  type="xs:string"
+					  use="optional" />
+		<xs:anyAttribute namespace="##other"
                       processContents="lax" />
 	</xs:complexType>
-</xsd:schema>
+	<xs:element name="variableInput" type="tVariable"/>
+	<xs:element name="variableOutput" type="tVariable"/>
+	<xs:complexType name="tVariable">
+		<xs:sequence>
+            <xs:element ref="variableInput"
+                         minOccurs="0"
+                         maxOccurs="unbounded"/>
+            <xs:element ref="variableOutput"
+                         minOccurs="0"
+                         maxOccurs="unbounded"/>
+        </xs:sequence>
+		<xs:attribute name="name"
+					  type="xs:string"
+					  use="optional" />
+		<xs:attribute name="type"
+					  type="xs:string"
+					  use="optional" />
+		<xs:attribute name="value"
+					  type="xs:string"
+					  use="optional" />
+		<xs:attribute name="equalVari"
+					  type="xs:string"
+					  use="optional" />
+		<xs:anyAttribute namespace="##other"
+                      processContents="lax" />
+	</xs:complexType>
+	
+</xs:schema>
