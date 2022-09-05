@@ -4,32 +4,29 @@
            targetNamespace="https://raw.githubusercontent.com/XulingYe/BPMN_SmartContractGenerator/scg" 
            xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-    <xs:element name="extensionElements">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:any minOccurs="0" maxOccurs="unbounded" namespace="##other" processContents="lax" />
-                <xs:element name="actions" minOccurs="0" maxOccurs="1">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element minOccurs="1" maxOccurs="unbounded" name="action">
-                                <xs:complexType>
-                                    <xs:sequence>
-                                        <xs:element ref="variableInput" minOccurs="0" maxOccurs="unbounded"/>
-                                        <xs:element ref="variableOutput" minOccurs="0" maxOccurs="unbounded"/>
-                                    </xs:sequence>
-                                    <xs:attribute name="id" type="xs:string" use="required" />
-                                    <xs:anyAttribute namespace="##other" processContents="lax" />
-                                </xs:complexType>
-                            </xs:element>
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
+    <xs:complexType name="tExtensionElements">
+        <xs:sequence>
+            <xs:any minOccurs="0" maxOccurs="unbounded" namespace="##other" processContents="lax" />
+            <xs:element ref="actions" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
 
-    <xs:element name="variableInput" type="tVariable"/>
+    <xs:element name="actions" type="tActions"/>
+    <xs:complexType name="tActions">
+        <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="unbounded" name="action">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="variableInput" type="tVariable" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="variableOutput" type="tVariable" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                    <xs:attribute name="id" type="xs:string" use="required" />
+                    <xs:anyAttribute namespace="##other" processContents="lax" />
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
     <xs:element name="variableOutput" type="tVariable"/>
     <xs:complexType name="tVariable">
         <xs:attribute name="name" type="xs:string" use="required" />
