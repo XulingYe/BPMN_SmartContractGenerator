@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="https://raw.githubusercontent.com/XulingYe/BPMN_SmartContractGenerator/main" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="https://raw.githubusercontent.com/XulingYe/BPMN_SmartContractGenerator/main" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="variable">
+    <xs:complexType>
+      <xs:attribute name="name" type="xs:string" use="required" />
+      <xs:attribute name="type" type="xs:string" use="required" />
+      <xs:attribute name="value" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="actions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="action">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="variableInput">
+                <xs:complexType>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                  <xs:attribute name="value" type="xs:string" use="optional" />
+                  <xs:attribute name="equalVari" type="xs:string" use="optional" />
+                  <xs:attribute name="type" type="xs:string" use="optional" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="variableOutput">
+                <xs:complexType>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
