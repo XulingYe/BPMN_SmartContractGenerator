@@ -21,7 +21,10 @@
         </xsd:sequence>
         <xsd:attribute name="id"
                        type="xsd:ID"
-                       use="optional" />
+                       use="required" />
+		<xsd:attribute name="rpaType"
+                       type="xsd:ID"
+                       use="required" />
         <xsd:anyAttribute namespace="##other"
                           processContents="lax" />
     </xsd:complexType>

@@ -21,11 +21,20 @@
                         <xs:element name="variableOutput" type="tVariable" minOccurs="0" maxOccurs="unbounded"/>
                     </xs:sequence>
                     <xs:attribute name="id" type="xs:string" use="required" />
+					<xs:attribute name="rpaType" type="tRPAType" use="required" />
                     <xs:anyAttribute namespace="##other" processContents="lax" />
                 </xs:complexType>
             </xs:element>
         </xs:sequence>
     </xs:complexType>
+	
+	<xs:simpleType name="tRPAType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FullyAutomated"/>
+			<xs:enumeration value="SemiAutomated"/>
+			<xs:enumeration value="Manual"/>
+		</xs:restriction>
+	</xs:simpleType>	
     
     <xs:element name="variableOutput" type="tVariable"/>
     <xs:complexType name="tVariable">
